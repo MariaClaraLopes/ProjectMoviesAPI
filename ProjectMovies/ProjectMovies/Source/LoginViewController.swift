@@ -1,19 +1,17 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  ProjectMovies
 //
 //  Created by Maria Clara Lopes on 14/04/21.
 //
 
 import UIKit
+import SnapKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
