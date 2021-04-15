@@ -14,6 +14,7 @@
 		CC14F2552627708F00395ADC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC14F2532627708F00395ADC /* Main.storyboard */; };
 		CC14F2572627709300395ADC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC14F2562627709300395ADC /* Assets.xcassets */; };
 		CC14F25A2627709300395ADC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC14F2582627709300395ADC /* LaunchScreen.storyboard */; };
+		CC14F26D2627831800395ADC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC14F26C2627831800395ADC /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CC14F2562627709300395ADC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC14F2592627709300395ADC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC14F25B2627709300395ADC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC14F26C2627831800395ADC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +77,6 @@
 				CC14F24D2627708F00395ADC /* AppDelegate.swift */,
 				CC14F24F2627708F00395ADC /* SceneDelegate.swift */,
 				CC14F26626277F5000395ADC /* Source */,
-				CC14F2532627708F00395ADC /* Main.storyboard */,
 				CC14F2562627709300395ADC /* Assets.xcassets */,
 				CC14F2582627709300395ADC /* LaunchScreen.storyboard */,
 				CC14F25B2627709300395ADC /* Info.plist */,
@@ -86,8 +87,8 @@
 		CC14F26626277F5000395ADC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CC14F2532627708F00395ADC /* Main.storyboard */,
 				CC14F26726277F6200395ADC /* LoginScreen */,
-				CC14F2512627708F00395ADC /* LoginViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -95,6 +96,8 @@
 		CC14F26726277F6200395ADC /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
+				CC14F2512627708F00395ADC /* LoginViewController.swift */,
+				CC14F26C2627831800395ADC /* LoginView.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			files = (
 				CC14F2522627708F00395ADC /* LoginViewController.swift in Sources */,
 				CC14F24E2627708F00395ADC /* AppDelegate.swift in Sources */,
+				CC14F26D2627831800395ADC /* LoginView.swift in Sources */,
 				CC14F2502627708F00395ADC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
