@@ -10,8 +10,8 @@ import SnapKit
 
 class LoginView: UIView {
     
-    var didTapOk: ((_ button: UIButton) -> Void)?
-    
+    var didTapOk: (((email: String, password: String)) -> Void)?
+
     let logoContentView: UIView = {
         let view = UIView()
         return view
@@ -179,7 +179,7 @@ class LoginView: UIView {
     
     @objc func buttonEnterClicked(sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
-        didTapOk?(buttonEnter)
+        didTapOk?((email: email, password: password))
     }
     
     func setupView() {
@@ -224,15 +224,6 @@ class LoginView: UIView {
         emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
         passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-    }
-    
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.endEditing(true)
-        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        return false
     }
     
     func loginError() {
@@ -377,6 +368,15 @@ class LoginView: UIView {
 }
 
 extension LoginView: UITextFieldDelegate {
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        return false
+    }
+    
     @objc func emailChangeColorClickedTextField() {
         textFieldDidBeginEditing(emailTextField)
         buttonEnterClicked(sender: buttonEnter)

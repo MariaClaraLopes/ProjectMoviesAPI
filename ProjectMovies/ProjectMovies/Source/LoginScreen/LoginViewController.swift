@@ -26,12 +26,30 @@ class LoginViewController: UIViewController {
     }
     
     func bind() {
-        customView.didTapOk = { [weak self] button in
-            print("ENTREI")
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "Home") as? HomeViewController else {return}
-        //        homeViewController.modalPresentationStyle = .fullScreen
-        //        self.present(homeViewController, animated: true)
+        customView.didTapOk = { [weak self] credential in
+//            let email: String = "teste@movies.com.br"
+            let email: String = "teste"
+            let password: String = "1234"
+            
+            if self?.customView.emailTextField.text == "" || self?.customView.passwordTextField.text == "" {
+                self?.showAlert(message: "Campos Inválidos.")
+                self?.customView.loginError()
+            } else if self?.customView.emailTextField.text != email || self?.customView.passwordTextField.text != password {
+                self?.showAlert(message: "Login inválido! Email ou Senha incorretos.")
+            } else {
+                print("ENTREI")
+                //            makecontroller()
+            }
         }
     }
+    
+//    private func makeController() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "Home") as? HomeViewController else {return}
+//        homeViewController.user = user
+//        homeViewController.requestConfig = session
+//        homeViewController.modalPresentationStyle = .fullScreen
+//        self.present(homeViewController, animated: true)
+//    }
+
 }
