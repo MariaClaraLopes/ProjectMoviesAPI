@@ -12,29 +12,19 @@ class LoginView: UIView {
     
     var didTapOk: (((email: String, password: String)) -> Void)?
 
-    let logoContentView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private let logoContentView = UIView()
     
-    let logoImageView: UIImageView = {
+    private let logoImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage.init(named: "LogoLogin")
         return image
     }()
         
-    let loginContentView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private let loginContentView = UIView()
     
-    let emailLabelContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
+    private let emailLabelContentView = UIView()
     
-    let emailLabel: UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
         label.font = UIFont(name: "Rubik-Regular", size: 14)
@@ -42,7 +32,7 @@ class LoginView: UIView {
         return label
     }()
     
-    let emailContentView: UIView = {
+    private let emailContentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
         view.layer.cornerRadius = 4
@@ -58,20 +48,16 @@ class LoginView: UIView {
         return textField
     }()
     
-    let emailImageView: UIImageView = {
+    private let emailImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "envelope")
         image.tintColor = .black
         return image
     }()
     
-    let passwordLabelContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
+    private let passwordLabelContentView = UIView()
     
-    let passwordLabel: UILabel = {
+    private let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Senha"
         label.font = UIFont(name: "Rubik-Regular", size: 14)
@@ -79,7 +65,7 @@ class LoginView: UIView {
         return label
     }()
     
-    let passwordContentView: UIView = {
+    private let passwordContentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
         view.layer.cornerRadius = 4
@@ -96,14 +82,14 @@ class LoginView: UIView {
         return textField
     }()
     
-    let passwordImageView: UIImageView = {
+    private let passwordImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "lock")
         image.tintColor = .black
         return image
     }()
     
-    let passwordHideButton: UIButton = {
+    private let passwordHideButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(systemName: "eye.fill")
         button.tintColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
@@ -112,14 +98,14 @@ class LoginView: UIView {
         return button
     }()
     
-    let buttonEnterContentView: UIView = {
+    private let buttonEnterContentView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         view.layer.cornerRadius = 8
         return view
     }()
     
-    let buttonEnter: UIButton = {
+    private let buttonEnter: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ENTRAR", for: .normal)
         button.backgroundColor = .black
@@ -129,21 +115,21 @@ class LoginView: UIView {
         return button
     }()
     
-    let imageErrorEmail: UIImageView = {
+    private let imageErrorEmail: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "x.circle.fill")
         image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
         return image
     }()
     
-    let imageErrorPassword: UIImageView = {
+    private let imageErrorPassword: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "x.circle.fill")
         image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
         return image
     }()
     
-    let labelError: UILabel = {
+    private let labelError: UILabel = {
         let label = UILabel()
         label.text = "Credenciais Incorretas"
         label.textColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
@@ -164,7 +150,6 @@ class LoginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     @objc func buttonHideClicked() {
         if passwordTextField.isSecureTextEntry == true {
             passwordTextField.isSecureTextEntry = false
@@ -182,7 +167,7 @@ class LoginView: UIView {
         didTapOk?((email: email, password: password))
     }
     
-    func setupView() {
+    private func setupView() {
         setupTap()
         
         imageErrorEmail.isHidden = true
@@ -210,7 +195,7 @@ class LoginView: UIView {
         self.addSubview(labelError)
     }
     
-    func setupTap() {
+    private func setupTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.addGestureRecognizer(tapGesture)
         let tapReturn = UITapGestureRecognizer(target: self, action: #selector(textFieldShouldReturn))
@@ -237,7 +222,7 @@ class LoginView: UIView {
         labelError.isHidden = false
     }
     
-    func setConstraints() {
+    private func setConstraints() {
                 
         logoContentView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(120)
