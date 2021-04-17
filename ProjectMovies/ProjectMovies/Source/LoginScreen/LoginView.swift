@@ -16,7 +16,7 @@ class LoginView: UIView {
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage.init(named: "LogoLogin")
+        image.image = UIImage.init(named: "LogoCine")
         return image
     }()
         
@@ -225,7 +225,7 @@ class LoginView: UIView {
     private func setConstraints() {
                 
         logoContentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(120)
+            make.top.equalToSuperview().offset(70)
             make.centerX.equalToSuperview()
             make.left.right.equalToSuperview()
             make.height.equalTo(200)
