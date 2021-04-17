@@ -8,15 +8,16 @@
 import UIKit
 import SnapKit
 
+// TODO: Tornar a classe Final
 class LoginView: UIView {
-    
+    // TODO: Tornar essa var "private(set) var"
     var didTapOk: (((email: String, password: String)) -> Void)?
 
     private let logoContentView = UIView()
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage.init(named: "LogoCine")
+        image.image = UIImage(named: "LogoCine")
         return image
     }()
         
@@ -27,15 +28,19 @@ class LoginView: UIView {
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
-        label.font = UIFont(name: "Rubik-Regular", size: 14)
+        // Criar classe fonts default e usar
+        label.font = Fonts.rubikRegular()
+        // TODO: Usar color assets
         label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         return label
     }()
     
     private let emailContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        view.layer.cornerRadius = 4
+//        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        // TODO: Usar color assets
+        view.backgroundColor = UIColor.init(named: "HexF9F9F9Color")
+        view.layer.cornerRadius = DesignDefaults.viewCornerRadius
         return view
     }()
     
@@ -68,6 +73,7 @@ class LoginView: UIView {
     private let passwordContentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        // TODO: Remover números mágicos
         view.layer.cornerRadius = 4
         return view
     }()
@@ -101,7 +107,7 @@ class LoginView: UIView {
     private let buttonEnterContentView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = DesignDefaults.buttonCornerRadius
         return view
     }()
     
@@ -110,6 +116,7 @@ class LoginView: UIView {
         button.setTitle("ENTRAR", for: .normal)
         button.backgroundColor = .black
         button.tintColor = .white
+        // TODO: Criar essa font no arquivo fonts
         button.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 16)
         button.addTarget(self, action:#selector(buttonEnterClicked), for: .touchUpInside)
         return button
@@ -132,6 +139,7 @@ class LoginView: UIView {
     private let labelError: UILabel = {
         let label = UILabel()
         label.text = "Credenciais Incorretas"
+        // TODO: Add color nos assets
         label.textColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
         label.font = UIFont(name: "Rubik-Light", size: 12)
         return label
@@ -170,6 +178,8 @@ class LoginView: UIView {
     private func setupView() {
         setupTap()
         
+        // TODO: Criar uma função que receber isHidden e passa o valor para as variáveis
+        // Chamar função
         imageErrorEmail.isHidden = true
         imageErrorPassword.isHidden = true
         labelError.isHidden = true
@@ -398,4 +408,3 @@ extension LoginView: UITextFieldDelegate {
         }
     }
 }
-

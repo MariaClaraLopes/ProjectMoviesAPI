@@ -4,6 +4,7 @@
 //
 //  Created by Maria Clara Lopes on 14/04/21.
 //
+/// TODO: - Remover textos comentados
 
 import UIKit
 
@@ -31,6 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    // TODO: Remover espaços em branco
 }
 

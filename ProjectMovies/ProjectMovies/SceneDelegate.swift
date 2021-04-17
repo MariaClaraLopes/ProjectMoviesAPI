@@ -4,6 +4,7 @@
 //
 //  Created by Maria Clara Lopes on 14/04/21.
 //
+// TODO: Remover textos comentados
 
 import UIKit
 
@@ -47,6 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    // TODO: Remover espaços em branco
 }
 
