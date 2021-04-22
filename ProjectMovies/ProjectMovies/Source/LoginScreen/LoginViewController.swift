@@ -1,10 +1,3 @@
-//
-//  LoginViewController.swift
-//  ProjectMovies
-//
-//  Created by Maria Clara Lopes on 14/04/21.
-//
-
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -21,15 +14,14 @@ class LoginViewController: UIViewController {
     
     private func bind() {
         let target = self
+        let loginModel = LoginModel()
         customView.didTapOk = { [weak self] credential in
-//            let email: String = "teste@movies.com.br"
-            let email: String = "teste"
-            let password: String = "1234"
             if self?.customView.emailTextField.text == "" || self?.customView.passwordTextField.text == "" {
                 ShowAlertManager.showAlert(title: "Erro", message: "Campos Inválidos.", target: target)
                 self?.customView.loginError()
-            } else if self?.customView.emailTextField.text != email || self?.customView.passwordTextField.text != password {
+            } else if self?.customView.emailTextField.text != loginModel.email || self?.customView.passwordTextField.text != loginModel.password {
                 ShowAlertManager.showAlert(title: "Login Inválido", message: "Email ou Senha incorretos.", target: target)
+                self?.customView.loginError()
             } else {
                 self?.makeController()
             }

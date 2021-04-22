@@ -1,52 +1,47 @@
-//
-//  LoginView.swift
-//  ProjectMovies
-//
-//  Created by Maria Clara Lopes on 14/04/21.
-//
-
 import UIKit
 import SnapKit
 
-// TODO: Tornar a classe Final
-class LoginView: UIView {
-    // TODO: Tornar essa var "private(set) var"
+final class LoginView: UIView {
     var didTapOk: (((email: String, password: String)) -> Void)?
 
-    private let logoContentView = UIView()
+    private let logoContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "Black")
+        return view
+    }()
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "LogoCine")
+        image.image = UIImage(named: "LogoPlayMovies")
         return image
     }()
         
     private let loginContentView = UIView()
     
-    private let emailLabelContentView = UIView()
+    private let emailLabelContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "Black")
+        return view
+    }()
     
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
-        // Criar classe fonts default e usar
         label.font = Fonts.rubikRegular()
-        // TODO: Usar color assets
-        label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        label.textColor = UIColor(named: "White")
         return label
     }()
     
     private let emailContentView: UIView = {
         let view = UIView()
-//        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        // TODO: Usar color assets
-        view.backgroundColor = UIColor.init(named: "HexF9F9F9Color")
-        view.layer.cornerRadius = DesignDefaults.viewCornerRadius
+        view.backgroundColor = UIColor(named: "GrayLight")
+        view.layer.cornerRadius = DesignDefaults.numberFour
         return view
     }()
     
     let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        textField.backgroundColor =  UIColor(named: "GrayLight")
         textField.keyboardType = .emailAddress
         textField.placeholder = "teste@movies.com.br"
         textField.addTarget(self, action:#selector(emailChangeColorClickedTextField), for: .touchUpInside)
@@ -56,23 +51,27 @@ class LoginView: UIView {
     private let emailImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "envelope")
-        image.tintColor = .black
+        image.tintColor = UIColor(named: "Black")
         return image
     }()
     
-    private let passwordLabelContentView = UIView()
+    private let passwordLabelContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "Black")
+        return view
+    }()
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Senha"
-        label.font = UIFont(name: "Rubik-Regular", size: 14)
-        label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        label.font = Fonts.rubikRegular()
+        label.textColor = UIColor(named: "White")
         return label
     }()
     
     private let passwordContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        view.backgroundColor = UIColor(named: "GrayLight")
         // TODO: Remover números mágicos
         view.layer.cornerRadius = 4
         return view
@@ -80,7 +79,7 @@ class LoginView: UIView {
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        textField.backgroundColor = UIColor(named: "GrayLight")
         textField.keyboardType = .numbersAndPunctuation
         textField.placeholder = "1234"
         textField.attributedText = .init(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemPink])
@@ -91,14 +90,14 @@ class LoginView: UIView {
     private let passwordImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "lock")
-        image.tintColor = .black
+        image.tintColor = UIColor(named: "Black")
         return image
     }()
     
     private let passwordHideButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(systemName: "eye.fill")
-        button.tintColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        button.tintColor = UIColor(named: "")
         button.setImage(image, for: .normal)
         button.addTarget(self, action:#selector(buttonHideClicked), for: .touchUpInside)
         return button
@@ -106,18 +105,18 @@ class LoginView: UIView {
     
     private let buttonEnterContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = DesignDefaults.buttonCornerRadius
+        view.backgroundColor = UIColor(named: "PinkMedium")
+        view.layer.cornerRadius = DesignDefaults.numberTwelve
         return view
     }()
     
     private let buttonEnter: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ENTRAR", for: .normal)
-        button.backgroundColor = .black
-        button.tintColor = .white
+        button.layer.backgroundColor = UIColor(named: "PinkMedium")?.cgColor
+        button.tintColor = UIColor(named: "White")
         // TODO: Criar essa font no arquivo fonts
-        button.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 16)
+        button.titleLabel?.font = Fonts.rubikMedium()
         button.addTarget(self, action:#selector(buttonEnterClicked), for: .touchUpInside)
         return button
     }()
@@ -125,14 +124,14 @@ class LoginView: UIView {
     private let imageErrorEmail: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "x.circle.fill")
-        image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
+        image.tintColor = UIColor(named: "RedMedium")
         return image
     }()
     
     private let imageErrorPassword: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "x.circle.fill")
-        image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
+        image.tintColor = UIColor(named: "RedMedium")
         return image
     }()
     
@@ -140,14 +139,14 @@ class LoginView: UIView {
         let label = UILabel()
         label.text = "Credenciais Incorretas"
         // TODO: Add color nos assets
-        label.textColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light", size: 12)
+        label.textColor = UIColor(named: "RedMedium")
+        label.font = Fonts.rubikLight()
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: "Black")
         emailTextField.delegate = self
         passwordTextField.delegate = self
         setupView()
@@ -215,16 +214,16 @@ class LoginView: UIView {
     
     @objc func dismissKeyboard() {
         self.endEditing(true)
-        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        emailLabel.textColor = UIColor(named: "White")
+        emailLabel.font = Fonts.rubikRegular()
+        passwordLabel.textColor = UIColor(named: "White")
+        passwordLabel.font = Fonts.rubikRegular()
     }
     
     func loginError() {
-        emailContentView.layer.borderColor = UIColor.red.cgColor
+        emailContentView.layer.borderColor = UIColor(named: "RedMedium")?.cgColor
         emailContentView.layer.borderWidth = 1
-        passwordContentView.layer.borderColor = UIColor.red.cgColor
+        passwordContentView.layer.borderColor = UIColor(named: "RedMedium")?.cgColor
         passwordContentView.layer.borderWidth = 1
         passwordHideButton.isHidden = true
         imageErrorEmail.isHidden = false
@@ -233,12 +232,11 @@ class LoginView: UIView {
     }
     
     private func setConstraints() {
-                
         logoContentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(70)
+            make.top.equalToSuperview().offset(40)
             make.centerX.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(160)
         }
         
         logoImageView.snp.makeConstraints { (make) in
@@ -331,7 +329,7 @@ class LoginView: UIView {
             make.top.equalTo(loginContentView.snp_bottomMargin).offset(80)
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
-            make.width.equalTo(316)
+            make.width.equalTo(150)
         }
         
         buttonEnter.snp.makeConstraints { (make) in
@@ -365,10 +363,10 @@ class LoginView: UIView {
 extension LoginView: UITextFieldDelegate {
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
-        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        emailLabel.textColor = UIColor(named: "White")
+        emailLabel.font = Fonts.rubikRegular()
+        passwordLabel.textColor = UIColor(named: "White")
+        passwordLabel.font = Fonts.rubikRegular()
         return false
     }
     
@@ -384,15 +382,15 @@ extension LoginView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailTextField {
-            emailLabel.textColor = .black
-            emailLabel.font = .boldSystemFont(ofSize: 18)
-            emailContentView.layer.borderColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1).cgColor
+            emailLabel.textColor = UIColor(named: "White")
+            emailLabel.font = .boldSystemFont(ofSize: 20)
+            emailContentView.layer.borderColor = UIColor(named: "GrayLight")?.cgColor
             imageErrorEmail.isHidden = true
             labelError.isHidden = true
         } else if textField == passwordTextField {
-            passwordLabel.textColor = .black
-            passwordLabel.font = .boldSystemFont(ofSize: 18)
-            passwordContentView.layer.borderColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1).cgColor
+            passwordLabel.textColor = UIColor(named: "White")
+            passwordLabel.font = .boldSystemFont(ofSize: 20)
+            passwordContentView.layer.borderColor =  UIColor(named: "GrayLight")?.cgColor
             imageErrorPassword.isHidden = true
             passwordHideButton.isHidden = false
         }
@@ -400,11 +398,11 @@ extension LoginView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailTextField {
-            emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-            emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+            emailLabel.textColor = UIColor(named: "White")
+            emailLabel.font = Fonts.rubikRegular()
         } else if textField == passwordTextField {
-            passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-            passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+            passwordLabel.textColor = UIColor(named: "White")
+            passwordLabel.font = Fonts.rubikRegular()
         }
     }
 }

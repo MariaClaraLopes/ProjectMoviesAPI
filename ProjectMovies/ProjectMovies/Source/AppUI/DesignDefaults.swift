@@ -1,6 +1,6 @@
 import UIKit
 
 struct DesignDefaults {
-    static let viewCornerRadius: CGFloat = 4.0
-    static let buttonCornerRadius: CGFloat = 8.0
+    static let numberFour: CGFloat = 4.0
+    static let numberTwelve: CGFloat = 12.0
 }
