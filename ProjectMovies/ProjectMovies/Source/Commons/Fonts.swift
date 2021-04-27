@@ -1,19 +1,19 @@
 import UIKit
 
 final class Fonts {
-    static func rubikRegular(size: CGFloat = 14.0) -> UIFont? {
-        return UIFont(name: "Rubik-Regular", size: size)
+    static func rubikLight(size: CGFloat = DesignDefaults.numberTwelve) -> UIFont? {
+        return UIFont(name: TextModel.fontRubikLight.rawValue, size: size)
     }
     
-    static func rubikBold(size: CGFloat = 14.0) -> UIFont? {
-        return UIFont(name: "Rubik-Bold", size: size)
+    static func rubikRegular(size: CGFloat = DesignDefaults.numberFourteen) -> UIFont? {
+        return UIFont(name: TextModel.fontRubikRegular.rawValue, size: size)
     }
     
-    static func rubikMedium(size: CGFloat = 16.0) -> UIFont? {
-        return UIFont(name: "Rubik-Medium", size: size)
+    static func rubikMedium(size: CGFloat = DesignDefaults.numberSixteen) -> UIFont? {
+        return UIFont(name: TextModel.fontRubikMedium.rawValue, size: size)
     }
-
-    static func rubikLight(size: CGFloat = 12.0) -> UIFont? {
-        return UIFont(name: "Rubik-Light", size: size)
+    
+    static func rubikBold(size: CGFloat = DesignDefaults.numberFourteen) -> UIFont? {
+        return UIFont(name: TextModel.fontRubikBold.rawValue, size: size)
     }
 }

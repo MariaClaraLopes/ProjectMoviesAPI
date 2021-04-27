@@ -17,10 +17,10 @@ class LoginViewController: UIViewController {
         let loginModel = LoginModel()
         customView.didTapOk = { [weak self] credential in
             if self?.customView.emailTextField.text == "" || self?.customView.passwordTextField.text == "" {
-                ShowAlertManager.showAlert(title: "Erro", message: "Campos Inválidos.", target: target)
+                ShowAlertManager.showAlert(title: TextModel.error.rawValue, message: TextModel.camposInvalid.rawValue, target: target)
                 self?.customView.loginError()
             } else if self?.customView.emailTextField.text != loginModel.email || self?.customView.passwordTextField.text != loginModel.password {
-                ShowAlertManager.showAlert(title: "Login Inválido", message: "Email ou Senha incorretos.", target: target)
+                ShowAlertManager.showAlert(title: TextModel.loginInvalid.rawValue, message: TextModel.emailAndPasswordInvalid.rawValue, target: target)
                 self?.customView.loginError()
             } else {
                 self?.makeController()
@@ -29,8 +29,8 @@ class LoginViewController: UIViewController {
     }
     
     private func makeController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "Home") as? HomeViewController else {return}
+        let storyboard = UIStoryboard(name: TextModel.main.rawValue, bundle: nil)
+        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: TextModel.home.rawValue) as? HomeViewController else {return}
         homeViewController.modalPresentationStyle = .fullScreen
         self.present(homeViewController, animated: true)
     }
