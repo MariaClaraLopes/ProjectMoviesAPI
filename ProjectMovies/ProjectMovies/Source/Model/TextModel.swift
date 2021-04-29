@@ -1,8 +1,7 @@
 import Foundation
 
 enum TextModel: String {
-//    case email = "teste@movies.com.br"
-    case email = "teste"
+    case email = "teste@movies.com"
     case password = "1234"
     case fontRubikLight = "Rubik-Light"
     case fontRubikRegular = "Rubik-Regular"

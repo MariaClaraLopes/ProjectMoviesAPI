@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class LoginView: UIView {
-    private(set) var didTapOk: (((email: String, password: String)) -> Void)?
+    var didTapOk: (((email: String, password: String)) -> Void)?
 
     private let logoContentView: UIView = {
         let view = UIView()
@@ -115,7 +115,7 @@ final class LoginView: UIView {
     private let buttonEnter: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(TextModel.entrar.rawValue, for: .normal)
-        button.layer.backgroundColor = UIColor(named: TextModel.colorPinkMedium.rawValue)?.cgColor
+        button.backgroundColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
         button.tintColor = UIColor(named: TextModel.colorWhite.rawValue)
         button.titleLabel?.font = Fonts.rubikMedium()
         button.addTarget(self, action:#selector(buttonEnterClicked), for: .touchUpInside)
@@ -176,13 +176,8 @@ final class LoginView: UIView {
     
     private func setupView() {
         setupTap()
+        setupisHidden(isHidden: true)
         
-        // TODO: Criar uma função que receber isHidden e passa o valor para as variáveis
-        // Chamar função
-        imageErrorEmail.isHidden = true
-        imageErrorPassword.isHidden = true
-        labelError.isHidden = true                
-
         self.addSubview(logoContentView)
         logoContentView.addSubview(logoImageView)
         self.addSubview(loginContentView)
@@ -204,9 +199,11 @@ final class LoginView: UIView {
         self.addSubview(labelError)
     }
     
-//    func setupisHiden(hidden: Bool) -> Bool {
-//        return true
-//    }
+    func setupisHidden(isHidden: Bool) {
+        imageErrorEmail.isHidden = isHidden
+        imageErrorPassword.isHidden = isHidden
+        labelError.isHidden = isHidden
+    }
     
     private func setupTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -214,7 +211,6 @@ final class LoginView: UIView {
         let tapReturn = UITapGestureRecognizer(target: self, action: #selector(textFieldShouldReturn))
         self.addGestureRecognizer(tapReturn)
     }
-    
     
     @objc func dismissKeyboard() {
         self.endEditing(true)
@@ -230,11 +226,8 @@ final class LoginView: UIView {
         passwordContentView.layer.borderColor = UIColor(named: TextModel.colorRedMedium.rawValue)?.cgColor
         passwordContentView.layer.borderWidth = DesignDefaults.numberOne
         
-        
         passwordHideButton.isHidden = true
-        imageErrorEmail.isHidden = false
-        imageErrorPassword.isHidden = false
-        labelError.isHidden = false
+        setupisHidden(isHidden: false)
     }
     
     private func setConstraints() {

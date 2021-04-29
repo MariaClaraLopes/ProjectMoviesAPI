@@ -101,8 +101,6 @@
 			children = (
 				CC14F2532627708F00395ADC /* Main.storyboard */,
 				CC3181282630C0A700B0870D /* Model */,
-				CC66845E262BA1DC00FF5C67 /* AppUI */,
-				CC66845D262BA1D700FF5C67 /* Commons */,
 				CC8C374E262A2D4B00B5C8C2 /* Manager */,
 				CC14F26726277F6200395ADC /* LoginScreen */,
 				CC8C3751262A32BA00B5C8C2 /* HomeScreen */,
@@ -124,6 +122,8 @@
 			children = (
 				CC35974426377AA200B43362 /* TextModel.swift */,
 				CC3181292630C0DA00B0870D /* LoginModel.swift */,
+				CC66845E262BA1DC00FF5C67 /* AppUI */,
+				CC66845D262BA1D700FF5C67 /* Commons */,
 			);
 			path = Model;
 			sourceTree = "<group>";
