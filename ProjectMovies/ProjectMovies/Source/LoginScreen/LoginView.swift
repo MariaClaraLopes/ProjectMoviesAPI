@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class LoginView: UIView {
-    var didTapOk: (((email: String, password: String)) -> Void)?
+    private(set) var didTapOk: (((email: String, password: String)) -> Void)?
 
     private let logoContentView: UIView = {
         let view = UIView()
@@ -45,6 +45,7 @@ final class LoginView: UIView {
         textField.keyboardType = .emailAddress
         textField.attributedPlaceholder = NSAttributedString(string: TextModel.email.rawValue,
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: TextModel.colorGrayMedium.rawValue) ?? .gray])
+        textField.textColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
         textField.addTarget(self, action:#selector(emailChangeColorClickedTextField), for: .touchUpInside)
         return textField
     }()
@@ -83,7 +84,7 @@ final class LoginView: UIView {
         textField.keyboardType = .numbersAndPunctuation
         textField.attributedPlaceholder = NSAttributedString(string: TextModel.password.rawValue,
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: TextModel.colorGrayMedium.rawValue) ?? .gray])
-        textField.attributedText = .init(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemPink])
+        textField.textColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
         textField.addTarget(self, action:#selector(passwordChangeColorClickedTextField), for: .touchUpInside)
         return textField
     }()

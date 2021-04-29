@@ -1,7 +1,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let customView = LoginView()
+    private let customView = LoginView()
     
     override func loadView() {
         self.view = customView
@@ -9,6 +9,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.overrideUserInterfaceStyle = .dark
         bind()
     }
     
