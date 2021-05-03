@@ -1,14 +1,7 @@
-//
-//  LoginViewController.swift
-//  ProjectMovies
-//
-//  Created by Maria Clara Lopes on 14/04/21.
-//
-
 import UIKit
 
 class LoginViewController: UIViewController {
-    let customView = LoginView()
+    private let customView = LoginView()
     
     override func loadView() {
         self.view = customView
@@ -16,20 +9,20 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.overrideUserInterfaceStyle = .dark
         bind()
     }
     
     private func bind() {
         let target = self
+        let loginModel = LoginModel()
         customView.didTapOk = { [weak self] credential in
-//            let email: String = "teste@movies.com.br"
-            let email: String = "teste"
-            let password: String = "1234"
             if self?.customView.emailTextField.text == "" || self?.customView.passwordTextField.text == "" {
-                ShowAlertManager.showAlert(title: "Erro", message: "Campos Inválidos.", target: target)
+                ShowAlertManager.showAlert(title: TextModel.error.rawValue, message: TextModel.camposInvalid.rawValue, target: target)
                 self?.customView.loginError()
-            } else if self?.customView.emailTextField.text != email || self?.customView.passwordTextField.text != password {
-                ShowAlertManager.showAlert(title: "Login Inválido", message: "Email ou Senha incorretos.", target: target)
+            } else if self?.customView.emailTextField.text != loginModel.email || self?.customView.passwordTextField.text != loginModel.password {
+                ShowAlertManager.showAlert(title: TextModel.loginInvalid.rawValue, message: TextModel.emailAndPasswordInvalid.rawValue, target: target)
+                self?.customView.loginError()
             } else {
                 self?.makeController()
             }
@@ -37,8 +30,8 @@ class LoginViewController: UIViewController {
     }
     
     private func makeController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "Home") as? HomeViewController else {return}
+        let storyboard = UIStoryboard(name: TextModel.main.rawValue, bundle: nil)
+        guard let homeViewController = storyboard.instantiateViewController(withIdentifier: TextModel.home.rawValue) as? HomeViewController else {return}
         homeViewController.modalPresentationStyle = .fullScreen
         self.present(homeViewController, animated: true)
     }

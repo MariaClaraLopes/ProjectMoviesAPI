@@ -1,98 +1,105 @@
-//
-//  LoginView.swift
-//  ProjectMovies
-//
-//  Created by Maria Clara Lopes on 14/04/21.
-//
-
 import UIKit
 import SnapKit
 
-class LoginView: UIView {
-    
+final class LoginView: UIView {
     var didTapOk: (((email: String, password: String)) -> Void)?
 
-    private let logoContentView = UIView()
+    private let logoContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: TextModel.colorBlack.rawValue)
+        return view
+    }()
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage.init(named: "LogoCine")
+        image.image = UIImage(named: TextModel.logoPlayMovies.rawValue)
         return image
     }()
         
     private let loginContentView = UIView()
     
-    private let emailLabelContentView = UIView()
+    private let emailLabelContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: TextModel.colorBlack.rawValue)
+        return view
+    }()
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email"
-        label.font = UIFont(name: "Rubik-Regular", size: 14)
-        label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        label.text = TextModel.nameEmail.rawValue
+        label.font = Fonts.rubikRegular()
+        label.textColor = UIColor(named: TextModel.colorWhite.rawValue)
         return label
     }()
     
     private let emailContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        view.layer.cornerRadius = 4
+        view.backgroundColor = UIColor(named: TextModel.colorGrayLight.rawValue)
+        view.layer.cornerRadius = DesignDefaults.numberFour
         return view
     }()
     
     let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        textField.backgroundColor =  UIColor(named: TextModel.colorGrayLight.rawValue)
         textField.keyboardType = .emailAddress
-        textField.placeholder = "teste@movies.com.br"
+        textField.attributedPlaceholder = NSAttributedString(string: TextModel.email.rawValue,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: TextModel.colorGrayMedium.rawValue) ?? .gray])
+        textField.textColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
         textField.addTarget(self, action:#selector(emailChangeColorClickedTextField), for: .touchUpInside)
         return textField
     }()
     
     private let emailImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "envelope")
-        image.tintColor = .black
+        image.image = UIImage(systemName: TextModel.envelope.rawValue)
+        image.tintColor = UIColor(named: TextModel.colorBlack.rawValue)
         return image
     }()
     
-    private let passwordLabelContentView = UIView()
+    private let passwordLabelContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: TextModel.colorBlack.rawValue)
+        return view
+    }()
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Senha"
-        label.font = UIFont(name: "Rubik-Regular", size: 14)
-        label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        label.text = TextModel.namePassword.rawValue
+        label.font = Fonts.rubikRegular()
+        label.textColor = UIColor(named: TextModel.colorWhite.rawValue)
         return label
     }()
     
     private let passwordContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        view.layer.cornerRadius = 4
+        view.backgroundColor = UIColor(named: TextModel.colorGrayLight.rawValue)
+        view.layer.cornerRadius = DesignDefaults.numberFour
         return view
     }()
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        textField.backgroundColor = UIColor(named: TextModel.colorGrayLight.rawValue)
         textField.keyboardType = .numbersAndPunctuation
-        textField.placeholder = "1234"
-        textField.attributedText = .init(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemPink])
+        textField.attributedPlaceholder = NSAttributedString(string: TextModel.password.rawValue,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: TextModel.colorGrayMedium.rawValue) ?? .gray])
+        textField.textColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
         textField.addTarget(self, action:#selector(passwordChangeColorClickedTextField), for: .touchUpInside)
         return textField
     }()
     
     private let passwordImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "lock")
-        image.tintColor = .black
+        image.image = UIImage(systemName: TextModel.lock.rawValue)
+        image.tintColor = UIColor(named: TextModel.colorBlack.rawValue)
         return image
     }()
     
     private let passwordHideButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: "eye.fill")
-        button.tintColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        let image = UIImage(systemName: TextModel.eyeFill.rawValue)
+        button.tintColor = UIColor(named: TextModel.colorBlack.rawValue)
         button.setImage(image, for: .normal)
         button.addTarget(self, action:#selector(buttonHideClicked), for: .touchUpInside)
         return button
@@ -100,46 +107,46 @@ class LoginView: UIView {
     
     private let buttonEnterContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
+        view.layer.cornerRadius = DesignDefaults.numberTwelve
         return view
     }()
     
     private let buttonEnter: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("ENTRAR", for: .normal)
-        button.backgroundColor = .black
-        button.tintColor = .white
-        button.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 16)
+        button.setTitle(TextModel.entrar.rawValue, for: .normal)
+        button.backgroundColor = UIColor(named: TextModel.colorPinkMedium.rawValue)
+        button.tintColor = UIColor(named: TextModel.colorWhite.rawValue)
+        button.titleLabel?.font = Fonts.rubikMedium()
         button.addTarget(self, action:#selector(buttonEnterClicked), for: .touchUpInside)
         return button
     }()
     
     private let imageErrorEmail: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "x.circle.fill")
-        image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
+        image.image = UIImage(systemName: TextModel.circleFill.rawValue)
+        image.tintColor = UIColor(named: TextModel.colorRedMedium.rawValue)
         return image
     }()
     
     private let imageErrorPassword: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "x.circle.fill")
-        image.tintColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
+        image.image = UIImage(systemName: TextModel.circleFill.rawValue)
+        image.tintColor = UIColor(named: TextModel.colorRedMedium.rawValue)
         return image
     }()
     
     private let labelError: UILabel = {
         let label = UILabel()
-        label.text = "Credenciais Incorretas"
-        label.textColor = UIColor(red: 0.878, green: 0, blue: 0, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light", size: 12)
+        label.text = TextModel.credentialIncorrect.rawValue
+        label.textColor = UIColor(named: TextModel.colorRedMedium.rawValue)
+        label.font = Fonts.rubikLight()
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: TextModel.colorBlack.rawValue)
         emailTextField.delegate = self
         passwordTextField.delegate = self
         setupView()
@@ -147,17 +154,17 @@ class LoginView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(TextModel.namefatalError.rawValue)
     }
     
     @objc func buttonHideClicked() {
         if passwordTextField.isSecureTextEntry == true {
             passwordTextField.isSecureTextEntry = false
-            let image = UIImage(systemName: "eye.slash.fill")
+            let image = UIImage(systemName: TextModel.eyeSlashFill.rawValue)
             passwordHideButton.setImage(image, for: .normal)
         } else {
             passwordTextField.isSecureTextEntry = true
-            let image = UIImage(systemName: "eye.fill")
+            let image = UIImage(systemName: TextModel.eyeFill.rawValue)
             passwordHideButton.setImage(image, for: .normal)
         }
     }
@@ -169,11 +176,8 @@ class LoginView: UIView {
     
     private func setupView() {
         setupTap()
+        setupisHidden(isHidden: true)
         
-        imageErrorEmail.isHidden = true
-        imageErrorPassword.isHidden = true
-        labelError.isHidden = true
-
         self.addSubview(logoContentView)
         logoContentView.addSubview(logoImageView)
         self.addSubview(loginContentView)
@@ -195,6 +199,12 @@ class LoginView: UIView {
         self.addSubview(labelError)
     }
     
+    func setupisHidden(isHidden: Bool) {
+        imageErrorEmail.isHidden = isHidden
+        imageErrorPassword.isHidden = isHidden
+        labelError.isHidden = isHidden
+    }
+    
     private func setupTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.addGestureRecognizer(tapGesture)
@@ -202,53 +212,50 @@ class LoginView: UIView {
         self.addGestureRecognizer(tapReturn)
     }
     
-    
     @objc func dismissKeyboard() {
         self.endEditing(true)
-        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        emailLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+        emailLabel.font = Fonts.rubikRegular()
+        passwordLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+        passwordLabel.font = Fonts.rubikRegular()
     }
     
     func loginError() {
-        emailContentView.layer.borderColor = UIColor.red.cgColor
-        emailContentView.layer.borderWidth = 1
-        passwordContentView.layer.borderColor = UIColor.red.cgColor
-        passwordContentView.layer.borderWidth = 1
+        emailContentView.layer.borderColor = UIColor(named: TextModel.colorRedMedium.rawValue)?.cgColor
+        emailContentView.layer.borderWidth = DesignDefaults.numberOne
+        passwordContentView.layer.borderColor = UIColor(named: TextModel.colorRedMedium.rawValue)?.cgColor
+        passwordContentView.layer.borderWidth = DesignDefaults.numberOne
+        
         passwordHideButton.isHidden = true
-        imageErrorEmail.isHidden = false
-        imageErrorPassword.isHidden = false
-        labelError.isHidden = false
+        setupisHidden(isHidden: false)
     }
     
     private func setConstraints() {
-                
         logoContentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(70)
+            make.top.equalToSuperview().offset(DesignDefaults.numberForty)
             make.centerX.equalToSuperview()
-            make.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.left.equalToSuperview().offset(DesignDefaults.numberEighty)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberEighty)
+            make.height.equalTo(DesignDefaults.numberOneHundredAndSixty)
         }
         
         logoImageView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(80)
-            make.right.equalToSuperview().offset(-80)
+            make.left.right.equalToSuperview()
             make.height.equalToSuperview()
         }
         
         loginContentView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(DesignDefaults.numberTwoHundred)
         }
         
         emailLabelContentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(16)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(18)
+            make.top.equalToSuperview().offset(DesignDefaults.numberSixteen)
+            make.left.equalToSuperview().offset(DesignDefaults.numberTwenty)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberTwenty)
+            make.height.equalTo(DesignDefaults.numberEighteen)
         }
         
         emailLabel.snp.makeConstraints { (make) in
@@ -257,31 +264,31 @@ class LoginView: UIView {
         }
         
         emailContentView.snp.makeConstraints { (make) in
-            make.top.equalTo(emailLabelContentView.snp_bottomMargin).offset(22)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(48)
+            make.top.equalTo(emailLabelContentView.snp_bottomMargin).offset(DesignDefaults.numberTwentyTwo)
+            make.left.equalToSuperview().offset(DesignDefaults.numberSixteen)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberSixteen)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
         }
         
         emailTextField.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(48)
+            make.left.equalToSuperview().offset(DesignDefaults.numberThirtyTwo)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberThirtyTwo)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
         }
         
         emailImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(4)
-            make.height.equalTo(20)
-            make.width.equalTo(25)
+            make.left.equalToSuperview().offset(DesignDefaults.numberFour)
+            make.height.equalTo(DesignDefaults.numberTwenty)
+            make.width.equalTo(DesignDefaults.numberTwentyFive)
         }
         
         passwordLabelContentView.snp.makeConstraints { (make) in
-            make.top.equalTo(emailTextField.snp_bottomMargin).offset(22)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(18)
+            make.top.equalTo(emailTextField.snp_bottomMargin).offset(DesignDefaults.numberTwentyTwo)
+            make.left.equalToSuperview().offset(DesignDefaults.numberTwenty)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberTwenty)
+            make.height.equalTo(DesignDefaults.numberEighteen)
         }
         
         passwordLabel.snp.makeConstraints { (make) in
@@ -290,64 +297,64 @@ class LoginView: UIView {
         }
         
         passwordContentView.snp.makeConstraints { (make) in
-            make.top.equalTo(passwordLabelContentView.snp_bottomMargin).offset(22)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.height.equalTo(48)
+            make.top.equalTo(passwordLabelContentView.snp_bottomMargin).offset(DesignDefaults.numberTwentyTwo)
+            make.left.equalToSuperview().offset(DesignDefaults.numberSixteen)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberSixteen)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
         }
         
         passwordTextField.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(48)
+            make.left.equalToSuperview().offset(DesignDefaults.numberThirtyTwo)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberThirtyTwo)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
         }
         
         passwordImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(4)
-            make.height.width.equalTo(25)
+            make.left.equalToSuperview().offset(DesignDefaults.numberFour)
+            make.height.width.equalTo(DesignDefaults.numberTwentyFive)
         }
 
         
         passwordHideButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-4)
-            make.height.equalTo(15)
-            make.width.equalTo(22)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberSix)
+            make.height.equalTo(DesignDefaults.numberFifteen)
+            make.width.equalTo(DesignDefaults.numberTwentyTwo)
         }
         
         buttonEnterContentView.snp.makeConstraints { (make) in
-            make.top.equalTo(loginContentView.snp_bottomMargin).offset(80)
+            make.top.equalTo(loginContentView.snp_bottomMargin).offset(DesignDefaults.numberEighty)
             make.centerX.equalToSuperview()
-            make.height.equalTo(48)
-            make.width.equalTo(316)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
+            make.width.equalTo(DesignDefaults.numberOneHundredAndFifty)
         }
         
         buttonEnter.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().offset(12)
-            make.right.equalToSuperview().offset(-12)
-            make.height.equalTo(48)
+            make.left.equalToSuperview().offset(DesignDefaults.numberTwelve)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberTwelve)
+            make.height.equalTo(DesignDefaults.numberFortyEight)
         }
         
         imageErrorEmail.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-4)
-            make.height.equalTo(20)
-            make.width.equalTo(20)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberFour)
+            make.height.equalTo(DesignDefaults.numberTwenty)
+            make.width.equalTo(DesignDefaults.numberTwenty)
         }
         
         imageErrorPassword.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-4)
-            make.height.equalTo(20)
-            make.width.equalTo(20)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberFour)
+            make.height.equalTo(DesignDefaults.numberTwenty)
+            make.width.equalTo(DesignDefaults.numberTwenty)
         }
         
         labelError.snp.makeConstraints { (make) in
-            make.top.equalTo(loginContentView.snp_bottomMargin).offset(4)
-            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(loginContentView.snp_bottomMargin).offset(DesignDefaults.numberFour)
+            make.right.equalToSuperview().offset(-DesignDefaults.numberTwenty)
         }
     }
 }
@@ -355,10 +362,10 @@ class LoginView: UIView {
 extension LoginView: UITextFieldDelegate {
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
-        emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
-        passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-        passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+        emailLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+        emailLabel.font = Fonts.rubikRegular()
+        passwordLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+        passwordLabel.font = Fonts.rubikRegular()
         return false
     }
     
@@ -374,15 +381,15 @@ extension LoginView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailTextField {
-            emailLabel.textColor = .black
-            emailLabel.font = .boldSystemFont(ofSize: 18)
-            emailContentView.layer.borderColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1).cgColor
+            emailLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+            emailLabel.font = .boldSystemFont(ofSize: DesignDefaults.numberTwenty)
+            emailContentView.layer.borderColor = UIColor(named: TextModel.colorGrayLight.rawValue)?.cgColor
             imageErrorEmail.isHidden = true
             labelError.isHidden = true
         } else if textField == passwordTextField {
-            passwordLabel.textColor = .black
-            passwordLabel.font = .boldSystemFont(ofSize: 18)
-            passwordContentView.layer.borderColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1).cgColor
+            passwordLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+            passwordLabel.font = .boldSystemFont(ofSize: DesignDefaults.numberTwenty)
+            passwordContentView.layer.borderColor =  UIColor(named: TextModel.colorGrayLight.rawValue)?.cgColor
             imageErrorPassword.isHidden = true
             passwordHideButton.isHidden = false
         }
@@ -390,12 +397,11 @@ extension LoginView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailTextField {
-            emailLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-            emailLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+            emailLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+            emailLabel.font = Fonts.rubikRegular()
         } else if textField == passwordTextField {
-            passwordLabel.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-            passwordLabel.font = UIFont(name: "Rubik-Regular", size: 14)
+            passwordLabel.textColor = UIColor(named: TextModel.colorWhite.rawValue)
+            passwordLabel.font = Fonts.rubikRegular()
         }
     }
 }
-

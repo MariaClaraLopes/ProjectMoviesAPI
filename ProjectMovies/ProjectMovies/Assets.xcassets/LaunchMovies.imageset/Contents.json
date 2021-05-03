@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logoCine.jpeg",
+      "filename" : "iconMovies.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logoCine@2x.jpeg",
+      "filename" : "iconMovies@2x.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logoCine@3x.jpeg",
+      "filename" : "iconMovies@3x.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }
